@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{css/index.css}">
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+</head>
+<body>
+
+    <div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <div class="col-12 user-img">
+                    <img src="img/avatar.png" alt="" srcset="">
+                </div>
+
+                <form class="col-12" th:action="@{/login}" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control"  placeholder="Nombre del Usuario" id="user-group">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control"  placeholder="Contraseña" id="contraseña-group">
+                    </div>
+                    <button type="button" class="btn btn-danger"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+                   <div class="col-12 forgot">
+                    <p><a href="#">Recordar contrasena?</a></p>
+                    <p><a href="#" th:href="@{/signup}">Crear Usuario - Registrarse</a>
+                </div>
+                <div th:if="${param.error}" class="alert alert-danger" role="alert">
+		            Invalid username and password.
+		        </div>
+		        <div th:if="${param.logout}" class="alert alert-success" role="alert">
+		            You have been logged out.
+		        </div>
+            </div>
+
+
+                </form>
+                
+                
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+
+    
+
+<script th:src="@{js/jquery/jquery.min.js}"></script>
+<script th:src="@{js/bootstrap.min.js}"></script>
+</body>
+</html>
