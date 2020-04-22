@@ -33,14 +33,40 @@ public class UserService {
 		return iUserRepository.findByIdAndPassword(id, password);
 	}
 	
-	public void guardar(UserModel user) {
-		iUserRepository.save(user);
-	}
-	
 	
 	public void deletebyid(int id) {
 		iUserRepository.deleteById(id);
 	}
+	
+	public void guardar(UserModel user) throws Exception{
+	
+		 if(checkUsernameAvaible(user) && checkpasswordvalid(user)) {
+			 iUserRepository.save(user);
+		 }
+		
+		
+	}
+	
+	public boolean checkUsernameAvaible(UserModel user) throws Exception {
+	Optional<UserModel> usermodel = iUserRepository.findByusername(user.getUsername());
+		
+		if(usermodel.isPresent()) {
+			throw new Exception("username no disponible");
+		}
+		return true;
+		
+	}
+	
+	public boolean checkpasswordvalid(UserModel user) throws Exception {
+		if(!user.getPassword().equals(user.getConfirmPassword())) {
+			throw new Exception("password y confirm password no son iguales");
+		}
+		return true;
+	}
+	
+	
+	
+	
 	
 	
 }

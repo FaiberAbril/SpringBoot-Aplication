@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "usuarios")
@@ -23,21 +25,28 @@ public class UserModel {
 	private int id;
 		
 	@Column 
+	@NotBlank
 	private String firstName;
 	
 	@Column 
+	@NotBlank
 	private String lastName;
 	
 	@Column(unique = true) 
+	@NotBlank
+	@Email
 	private String email;
 	
+	@NotBlank
 	@Column(unique = true) 
 	private String username;
 	
+	@NotBlank
 	@Column
 	private String password;
 	
 	@Transient 
+	@NotBlank
 	private String confirmPassword;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
